@@ -1,4 +1,29 @@
 {
-  "components": {},
-  "dependencies": {}
+  "components": {
+    "seeds": {
+      "petrinet": {
+        "src": "src/seeds/petrinet"
+      }
+    },
+    "plugins": {
+      "StateMachine": {
+        "src": "src/plugins/StateMachine",
+        "test": "test/plugins/StateMachine"
+      }
+    },
+    "visualizers": {
+      "pendesvisual": {
+        "src": "panels/pendesvisual/pendesvisualPanel",
+        "title": "pendesvisual",
+        "panel": "src/visualizers/panels/pendesvisual",
+        "secondary": false,
+        "widget": "src/visualizers/widgets/pendesvisual"
+      }
+    }
+  },
+  "dependencies": {
+    "seeds": {},
+    "plugins": {},
+    "visualizers": {}
+  }
 }
