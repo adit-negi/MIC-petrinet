@@ -23,11 +23,17 @@ define([
 
         // Initialize core collections and variables
         this._widget = options.widget;
+        
+        this._networkRootLoaded = false;
+        this._fireableEvents = null;
+
 
         this._currentNodeId = null;
-        this._currentNodeParentId = undefined;
+        //this._currentNodeParentId = undefined;
 
         this._initWidgetEventHandlers();
+
+        this.setFireableEvents = this.setFireableEvents.bind(this);
 
         this._logger.debug('ctor finished');
     }
@@ -52,6 +58,7 @@ define([
         // Remove current territory patterns
         if (self._currentNodeId) {
             self._client.removeUI(self._territoryId);
+            self._networkRootLoaded = false;
         }
 
         self._currentNodeId = nodeId;
@@ -60,8 +67,8 @@ define([
         if (typeof self._currentNodeId === 'string') {
             // Put new node's info into territory rules
             self._selfPatterns = {};
-            self._selfPatterns[nodeId] = {children: 0};  // Territory "rule"
-
+            //self._selfPatterns[nodeId] = {children: 0};  // Territory "rule"
+            self._selfPatterns[nodeId] = {children: 1};  // Territory "rule"
             self._widget.setTitle(desc.name.toUpperCase());
 
             if (typeof desc.parentId === 'string') {
