@@ -1,1 +1,8 @@
-[]
+[
+  {
+    "id": "pendesvisual",
+    "title": "pendesvisual",
+    "panel": "panels/pendesvisual/pendesvisualPanel",
+    "DEBUG_ONLY": false
+  }
+]

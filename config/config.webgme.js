@@ -7,17 +7,24 @@ var config = require('webgme/config/config.default'),
     validateConfig = require('webgme/config/validator');
 
 // The paths can be loaded from the webgme-setup.json
+config.plugin.basePaths.push(__dirname + '/../src/plugins');
+config.seedProjects.basePaths.push(__dirname + '/../src/seeds/petrinet');
+config.seedProjects.basePaths.push(__dirname + '/../src/seeds/petrinetV1');
+config.seedProjects.basePaths.push(__dirname + '/../src/seeds/petrinetV2');
 
 
 
+config.visualization.panelPaths.push(__dirname + '/../src/visualizers/panels');
 
 
 
 
 // Visualizer descriptors
-
+config.visualization.visualizerDescriptors.push(__dirname + '/../src/visualizers/Visualizers.json');
 // Add requirejs paths
 config.requirejsPaths = {
+  'panels': './src/visualizers/panels',
+  'widgets': './src/visualizers/widgets',
   'wdestup': './src/common'
 };
 

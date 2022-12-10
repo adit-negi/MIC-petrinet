@@ -19,6 +19,8 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
+    "fs": "0.0.1-security",
+    "jointjs": "^3.6.3",
     "webgme": "latest",
     "webgme-bindings": "latest",
     "webgme-cli": "latest"
