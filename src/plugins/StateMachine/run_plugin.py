@@ -1,5 +1,5 @@
 """
-This script is called by the plugin-wrapper, StateMachine.js, which passes down the
+This script is called by the plugin-wrapper, ReachCheck.js, which passes down the
 plugin context via arguments. These can be modified to include more information if needed.
 Notes:
  - The current working directory when called from a plugin is the root of your webgme repo.

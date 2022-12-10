@@ -43,7 +43,7 @@ define([
         //set Widget title
         this.setTitle('');
 
-        this.widget = new pendesvisualWidget(this.logger, this.$el);
+        this.widget = new pendesvisualWidget(this.logger, this.$el, this._client);
 
         this.widget.setTitle = function (title) {
             self.setTitle(title);

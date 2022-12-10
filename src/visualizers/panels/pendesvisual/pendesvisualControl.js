@@ -24,17 +24,11 @@ define([
         // Initialize core collections and variables
         this._widget = options.widget;
         
-        this._networkRootLoaded = false;
-        this._fireableEvents = null;
-
 
         this._currentNodeId = null;
-        //this._currentNodeParentId = undefined;
+        this._currentNodeParentId = undefined;
 
         this._initWidgetEventHandlers();
-
-        this.setFireableEvents = this.setFireableEvents.bind(this);
-
         this._logger.debug('ctor finished');
     }
 
@@ -50,33 +44,26 @@ define([
     // defines the parts of the project that the visualizer is interested in
     // (this allows the browser to then only load those relevant parts).
     pendesvisualControl.prototype.selectedObjectChanged = function (nodeId) {
+
+
         var desc = this._getObjectDescriptor(nodeId),
             self = this;
-
         self._logger.debug('activeObject nodeId \'' + nodeId + '\'');
 
         // Remove current territory patterns
         if (self._currentNodeId) {
             self._client.removeUI(self._territoryId);
-            self._networkRootLoaded = false;
         }
 
         self._currentNodeId = nodeId;
-        self._currentNodeParentId = undefined;
 
         if (typeof self._currentNodeId === 'string') {
             // Put new node's info into territory rules
             self._selfPatterns = {};
-            //self._selfPatterns[nodeId] = {children: 0};  // Territory "rule"
-            self._selfPatterns[nodeId] = {children: 1};  // Territory "rule"
+            self._selfPatterns[nodeId] = {children: 0};  // Territory "rule"
+
             self._widget.setTitle(desc.name.toUpperCase());
-
-            if (typeof desc.parentId === 'string') {
-                self.$btnModelHierarchyUp.show();
-            } else {
-                self.$btnModelHierarchyUp.hide();
-            }
-
+            
             self._currentNodeParentId = desc.parentId;
 
             self._territoryId = self._client.addUI(self, function (events) {
@@ -85,7 +72,6 @@ define([
 
             // Update the territory
             self._client.updateTerritory(self._territoryId, self._selfPatterns);
-
             self._selfPatterns[nodeId] = {children: 1};
             self._client.updateTerritory(self._territoryId, self._selfPatterns);
         }
@@ -104,21 +90,17 @@ define([
                 isConnection: GMEConcepts.isConnection(nodeId)
             };
         }
-
         return objDescriptor;
     };
 
     /* * * * * * * * Node Event Handling * * * * * * * */
     pendesvisualControl.prototype._eventCallback = function (events) {
         var i = events ? events.length : 0,
-            event;
-
+        event;
         this._logger.debug('_eventCallback \'' + i + '\' items');
-
         while (i--) {
             event = events[i];
             switch (event.etype) {
-
             case CONSTANTS.TERRITORY_EVENT_LOAD:
                 this._onLoad(event.eid);
                 break;
@@ -132,24 +114,22 @@ define([
                 break;
             }
         }
-
-        this._logger.debug('_eventCallback \'' + events.length + '\' items - DONE');
+        this._logger.debug('_eventCallback \'' + events.length + '\' items - DONE'); 
     };
 
+
+    
     pendesvisualControl.prototype._onLoad = function (gmeId) {
         var description = this._getObjectDescriptor(gmeId);
         this._widget.addNode(description);
     };
-
     pendesvisualControl.prototype._onUpdate = function (gmeId) {
         var description = this._getObjectDescriptor(gmeId);
         this._widget.updateNode(description);
     };
-
     pendesvisualControl.prototype._onUnload = function (gmeId) {
         this._widget.removeNode(gmeId);
     };
-
     pendesvisualControl.prototype._stateActiveObjectChanged = function (model, activeObjectId) {
         if (this._currentNodeId === activeObjectId) {
             // The same node selected as before - do not trigger
@@ -218,36 +198,45 @@ define([
     };
 
     pendesvisualControl.prototype._initializeToolbar = function () {
-        var self = this,
-            toolBar = WebGMEGlobal.Toolbar;
-
+        const self = this;
+        const toolBar = WebGMEGlobal.Toolbar;
         this._toolbarItems = [];
-
         this._toolbarItems.push(toolBar.addSeparator());
-
-        /************** Go to hierarchical parent button ****************/
-        this.$btnModelHierarchyUp = toolBar.addButton({
-            title: 'Go to parent',
-            icon: 'glyphicon glyphicon-circle-arrow-up',
+        this.$btnStateMachine = toolBar.addButton({
+            title: 'Test plugin',
+            icon: 'glyphicon glyphicon-question-sign',
             clickFn: function (/*data*/) {
-                WebGMEGlobal.State.registerActiveObject(self._currentNodeParentId);
+                const context = self._client.getCurrentPluginContext('StateMachine',self._currentNodeId, []);
+                // !!! it is important to fill out or pass an empty object as the plugin config otherwise we might get errors...
+
+                context.pluginConfig = {};
+
+                self._client.runServerPlugin(
+                    'StateMachine', 
+                    context, 
+                    function(err, result){
+                        // here comes any additional processing of results or potential errors.
+                        const messages = result.messages;
+
+                        messages.forEach(function (item, index) {
+                            console.log(item.message);
+                            alert(item.message);
+                          });
+                        console.log('plugin err:', err);
+                        console.log('plugin result:', result);
+                });
             }
         });
-        this._toolbarItems.push(this.$btnModelHierarchyUp);
-        this.$btnModelHierarchyUp.hide();
-
-        /************** Checkbox example *******************/
-
-        this.$cbShowConnection = toolBar.addCheckBox({
-            title: 'toggle checkbox',
-            icon: 'gme icon-gme_diagonal-arrow',
-            checkChangedFn: function (data, checked) {
-                self._logger.debug('Checkbox has been clicked!');
-            }
+        this._toolbarItems.push(this.$btnStateMachine);
+        //this._toolbarItems.push(this.$btnClassify);
+        this.$btnReset = toolBar.addButton({
+            title: 'Reset Markings',
+            icon: 'glyphicon glyphicon-repeat',
+            clickFn: () => self._widget.resetMarkings(),
         });
-        this._toolbarItems.push(this.$cbShowConnection);
+        this._toolbarItems.push(this.$btnReset);
 
-        this._toolbarInitialized = true;
+        this._toolbarInitialized = true; 
     };
 
     return pendesvisualControl;
