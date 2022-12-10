@@ -14,7 +14,7 @@ The easiest way to start using this project is to fork it in git. Alternatively,
 - connect to your server at http://localhost:8888
 
 ## About my project
-Once you have started the server on localhost, you can open project test3. Alternatively you can create a new project using petrinetV2 as the seed for it. 
+Once you have started the server on localhost, you can open project test3. Alternatively you can create a new project using petrinetV2 as the seed for it. NOTE - please use test3 project if you don't want to configure the number of balls/see a ready made demo! 
 
 ### Functionalities implemented - 
 1. <b>Transtions </b>
