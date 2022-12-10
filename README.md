@@ -21,11 +21,11 @@ Once you have started the server on localhost, you can open project test3. Alter
     a. All transitions enabled transitions will be colored white, on cliking those they will simulate movement of balls from one place to another
     b. All disabled transitions will be coloured black, clicking those will lead to no result
     c. On reaching a deadlock state i.e no valid transition. All transitions should change to the color red.
-    ![alt text](https://ibb.co/5KFmHTm)
-    ![alt text](https://ibb.co/mh12Kn5)
+    ![alt text](https://github.com/adit-negi/MIC-petrinet/blob/hotfix/readme/images/micimg1.png)
+    ![alt text](https://github.com/adit-negi/MIC-petrinet/blob/hotfix/readme/images/micimg2.png)
 2. Plugin
     a. Onclicking the question mark icon on the top right the plugin should trigger and you will be able to see is this petrinet is a state machine,free choice or marked graph.
-    ![alt text](https://ibb.co/N9JjNct)
+    ![alt text](https://github.com/adit-negi/MIC-petrinet/blob/hotfix/readme/images/webgmeplugin.png)
     
 
 ## Main docker commands
