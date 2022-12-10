@@ -29,7 +29,7 @@ Once you have started the server on localhost, you can open project test3. Alter
     ![alt text](https://github.com/adit-negi/MIC-petrinet/blob/main/images/pluginwebgme.jpg)
     
 ### VIDEO DEMO
-[![Watch the video](https://github.com/adit-negi/MIC-petrinet/blob/main/readme/images/MicDemo.png)](https://www.loom.com/share/b4a0ebca0ab2417d8ed2e4c7892c7c19)
+[![Watch the video](https://github.com/adit-negi/MIC-petrinet/blob/main/images/MicDemo.png)](https://www.loom.com/share/b4a0ebca0ab2417d8ed2e4c7892c7c19)
 ## Main docker commands
 All of the following commands should be used from your main project directory (where this file also should be):
 - To **rebuild** the complete solution `docker-compose build` (and follow with the `docker-compose up -d` to restart the server)
