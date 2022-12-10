@@ -110,17 +110,18 @@ define([
                     const dstTransitionPath = this.core.getPointerPath(child, 'dst');
                     this.logger.info("breaks here 1"); 
 
-                    places[inPlacePath].outTransitions.push(dstTransitionPath);
+                    places[inPlacePath].outTransitions.add(dstTransitionPath);
                     this.logger.info("breaks here 2");
   
-                    transitions[dstTransitionPath].inPlaces.push(inPlacePath);
+                    transitions[dstTransitionPath].inPlaces.add(inPlacePath);
 
                     paths[inPlacePath].push(dstTransitionPath);
                 } else if (this.core.getMetaType(child) === this.META.Arc_T_P) {
                     const outPlacePath = this.core.getPointerPath(child, 'dst');
                     const srcTransitionPath = this.core.getPointerPath(child, 'src');
-                    places[outPlacePath].inTransitions.push(srcTransitionPath);
-                    transitions[srcTransitionPath].outPlaces.push(outPlacePath);
+                    places[outPlacePath].inTransitions.add(srcTransitionPath);
+                    transitions[srcTransitionPath].outPlaces.add(outPlacePath);
+                    
                     paths[srcTransitionPath].push(outPlacePath);
                 }
             });
