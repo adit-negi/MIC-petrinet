@@ -17,19 +17,19 @@ The easiest way to start using this project is to fork it in git. Alternatively,
 Once you have started the server on localhost, you can open project test3. Alternatively you can create a new project using petrinetV2 as the seed for it. 
 
 ### Functionalities implemented - 
-1. Transtions 
+1. <b>Transtions </b>
     <br>
-    a. All transitions enabled transitions will be colored white, on cliking those they will simulate movement of balls from one place to another
+    a. All transitions enabled transitions will be colored white, on cliking those they will simulate movement of balls from one place to another <br>
     b. All disabled transitions will be coloured black, clicking those will lead to no result.<br>
     c. On reaching a deadlock state i.e no valid transition. All transitions should change to the color red.<br>
     ![alt text](https://github.com/adit-negi/MIC-petrinet/blob/hotfix/readme/images/micimg1.png)
     ![alt text](https://github.com/adit-negi/MIC-petrinet/blob/hotfix/readme/images/micimg2.png)
-2. Plugin<br>
+2.<b> Plugin </b><br>
     a. Onclicking the question mark icon on the top right the plugin should trigger and you will be able to see is this petrinet is a state machine,free choice or marked graph.<br>
-    ![alt text](https://github.com/adit-negi/MIC-petrinet/blob/hotfix/readme/images/webgmeplugin.jpg)
+    ![alt text](https://github.com/adit-negi/MIC-petrinet/blob/main/images/pluginwebgme.jpg)
     
 ### VIDEO DEMO
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://www.loom.com/share/b4a0ebca0ab2417d8ed2e4c7892c7c19)
+[![Watch the video](https://github.com/adit-negi/MIC-petrinet/blob/hotfix/readme/images/MicDemo.png)](https://www.loom.com/share/b4a0ebca0ab2417d8ed2e4c7892c7c19)
 ## Main docker commands
 All of the following commands should be used from your main project directory (where this file also should be):
 - To **rebuild** the complete solution `docker-compose build` (and follow with the `docker-compose up -d` to restart the server)
