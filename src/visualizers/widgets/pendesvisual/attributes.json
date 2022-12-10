@@ -1,0 +1,27 @@
+{"attrs": {
+    "circle": {
+        "r": 35,
+        "strokeWidth": 3,
+        "stroke": "#000000",
+        "fill": "#ffffff"
+
+    },
+    "text": {
+        "font-weight": "bold",
+        "textAnchor": "middle",
+        "textVerticalAnchor": "middle",
+        "x": 0.6,
+        "y": -30,
+        "ref": "circle"
+
+    },
+    "label": {
+        "font-weight": "bold",
+        "textAnchor": "middle",
+        "y": 20,
+        "ref": "circle"
+
+    },
+    "marks": 0
+}
+}
